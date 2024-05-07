@@ -1,0 +1,36 @@
+.tab-switch{
+    padding: 20px;
+
+    .tabs{
+        display: flex;
+        flex-direction: row;
+        list-style-type: none; 
+        padding: 0; 
+        margin: 0; 
+        text-align: center;
+        color: #eceff1;
+
+        .tab-slider1{
+            width: 5rem;
+            border-radius: 2rem 0 0 2rem;
+            height: 2rem;
+            background-color: #7cc6ed;
+        }
+
+        .tab-slider2{
+            width: 5rem;
+            border-radius: 0 2rem 2rem 0;
+            height: 2rem;
+            background-color: #7cc6ed;
+
+        }
+
+        li:hover  {
+            background:#48abe0;
+        }
+        
+        li:focus {
+            background:#2280b3;
+        }
+    }
+}

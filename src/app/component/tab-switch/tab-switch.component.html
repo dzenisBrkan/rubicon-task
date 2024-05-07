@@ -1,0 +1,14 @@
+<div class="tab-switch">
+    <ul class="tabs">
+      <a><li class="tab-slider1" [class.active]="viewMode == 'tab1'" rel="tab1" (click)="viewMode ='tab1'">TV Shows</li></a>
+      <a><li class="tab-slider2" [class.active]="viewMode == 'tab2'" rel="tab2" (click)="viewMode ='tab2'">Movies</li></a>
+    </ul>
+  <div class="tab-slider-container" [ngSwitch]="viewMode">
+    <div id="tab1" class="tab-slider-body" *ngSwitchCase="'tab1'">
+      <h2>TV Shows</h2>
+    </div>
+    <div id="tab2" class="tab-slider-body" *ngSwitchCase="'tab2'">
+      <h2>Movies</h2>
+    </div>
+  </div>
+</div>
