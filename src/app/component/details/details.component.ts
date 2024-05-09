@@ -12,4 +12,8 @@ export class DetailsComponent implements OnInit {
   ngOnInit() {
   }
 
+  backTab(){
+    window.close();
+  }
+
 }
