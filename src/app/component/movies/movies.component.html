@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="jumbotron">
+      <h1 class="text-center">Search for any movie...</h1>
+      <div class="search">
+          <input type="text" #search placeholder="search for movie" />
+          <i class="fa fa-search fa-3x" (click)="getMovies(search.value)"></i>
+      </div>
+  </div>
+</div>
+<div class="container">
+  <!-- <app-card-movie [movies]="movies"/> -->
+  <app-card-movie *ngFor="let movie of movies" [movie] = "movie">
+  </app-card-movie>
+</div>

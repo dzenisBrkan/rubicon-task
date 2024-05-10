@@ -1,0 +1,23 @@
+<h1>Movies Details</h1>
+<div class="row">
+  <div class="main">
+    <img src="{{movie.poster}}" alt="">
+  </div>
+  <div class="">
+    <h2>{{movie.title}}</h2>
+    <ul>
+      <li><strong>Type:</strong>{{movie.type}}</li>
+      <li><strong>Year:</strong>{{movie.year}}</li>
+      <li><strong>Title:</strong>{{movie.title}}</li>
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="jubotron">
+    <h3>Plot</h3>
+    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est aut delectus dolorum, at nisi incidunt explicabo aperiam labore, nulla tenetur atque neque totam. Ut perspiciatis nulla adipisci explicabo pariatur maiores!
+    <hr />
+    <a href="https://imdb.com/title/{{movie.id}}">View IMDB</a>
+    <a [routerLink]="['/movies']" routerLinkActive >Back</a>
+  </div>
+</div>

@@ -7,18 +7,26 @@ import { FormsModule } from '@angular/forms';
 import { SearchBarComponent } from './component/search-bar/search-bar.component';
 import { ShowsComponent } from './component/shows/shows.component';
 import { TabSwitchComponent } from './component/tab-switch/tab-switch.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MoviesComponent } from './component/movies/movies.component';
+import { MoviesDetailsComponent } from './component/movies-details/movies-details.component';
+import { CardMovieComponent } from './component/card-movie/card-movie.component';
 
 @NgModule({
   declarations: [	
     AppComponent,
-    SearchBarComponent,
-    ShowsComponent,
-    TabSwitchComponent,
+    // SearchBarComponent,
+    // ShowsComponent,
+    // TabSwitchComponent,
+    MoviesComponent,
+    MoviesDetailsComponent,
+    CardMovieComponent
    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [
     provideClientHydration()
