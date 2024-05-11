@@ -1,0 +1,25 @@
+.row{
+    /* background-color: aquamarine; */
+    /* Add shadows to create the "card" effect */
+    padding: 10%;
+
+    .card{
+        background-color: #6d7275;
+        box-shadow: 0 14px 18px 0 rgba(0,0,0,0.9);
+        transition: 0.3s;
+        border-radius: 5px;
+    }
+
+
+    img{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+        padding-top: 5%;
+    }
+
+    button{
+        position: unset;
+    }
+}

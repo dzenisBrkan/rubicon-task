@@ -1,25 +1,28 @@
-<h1>Movies Details</h1>
 <div class="row">
-  <div class="main">
-    <img src="{{getImage()}}" alt="">
-  </div>
-  <div class="">
-    <h2>{{movie.title}}</h2>
-    <ul>
-      <li><strong>Original title:</strong>{{movie.original_title}}</li>
-      <li><strong>Year:</strong>{{movie.release_date}}</li>
-      <li><strong>Orignal language:</strong>{{movie.original_language}}</li>
-      <li><strong>Budget:</strong>{{movie.budget}}</li>
-      <li><strong>Release date:</strong>{{movie.release_date}}</li>
 
-    </ul>
-  </div>
+  <div class="card">
+    <div class="main">
+      <img src="{{getImage()}}" alt="">
+    </div>
+    <div class="content">
+      <h2>{{movie.title}}</h2>
+      <ul>
+        <li><strong>Original title:</strong>{{movie.original_title}}</li>
+        <li><strong>Year:</strong>{{movie.release_date}}</li>
+        <li><strong>Orignal language:</strong>{{movie.original_language}}</li>
+        <li><strong>Budget:</strong>{{movie.budget}}</li>
+        <li><strong>Release date:</strong>{{movie.release_date}}</li>
+  
+      </ul>
+    </div>
+  
+    <div class="row">
+      <div class="main">
+        <h3>Plot</h3>
+        <p>{{movie.overview}}</p>
+        <hr />
+        <button [routerLink]="['/movies']" routerLinkActive >Back</button>
+      </div>
+    </div>
 </div>
-<div class="row">
-  <div class="main">
-    <h3>Plot</h3>
-    <p>{{movie.overview}}</p>
-    <hr />
-    <a [routerLink]="['/movies']" routerLinkActive >Back</a>
-  </div>
 </div>
