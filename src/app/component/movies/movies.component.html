@@ -6,12 +6,11 @@
 </div>
 
 <div class="container">
-  <div class="main">
-      <h1 class="text-center">Search for any movie...</h1>
+  <div class="wrap">
       <div class="search">
-          <input type="text" #search placeholder="search for movie" (input)="searchMovies(search.value)" />
-          <i class="fa fa-search fa-3x" (click)="searchMovies(search.value)"></i>
-          <i class="fa fa-search fa-3x" (click)="searchTVs(search.value)"></i>
+          <input type="text" class="searchTerm" #search placeholder="searching for..." (input)="searchMovies(search.value)" />
+          <button class="searchButton"><i class="fa fa-search fa-1x" (click)="searchMovies(search.value)"></i></button>
+          <!-- <i class="fa fa-search fa-3x" (click)="searchTVs(search.value)"></i> -->
           <!-- treba napraviti da se traze i shows -->
       </div>
   </div>

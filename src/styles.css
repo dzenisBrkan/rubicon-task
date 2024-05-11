@@ -82,7 +82,7 @@ body {
 }
 
 button {
-  background-color: #04AA6D; /* Green */
+  background-color: #04AA6D;
   border: none;
   color: white;
   padding: 5px 10px;
@@ -102,9 +102,7 @@ button {
 
 .movie div:nth-of-type(3) {
   z-index: 2;
-  /* background-color: #343739; */
   padding: 16px 24px 24px 24px;
-
   position: absolute;
   bottom: 0;
   right: 0;
