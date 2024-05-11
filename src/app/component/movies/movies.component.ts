@@ -13,11 +13,27 @@ export class MoviesComponent implements OnInit {
   constructor(private movieService: MovieService){}
 
   ngOnInit(){
-    this.getTVs('');
+    this.getTVs();
   }
 
-  getMovies(searchString: string){
-    this.movieService.getMovies(searchString).subscribe({
+  getMovies(){
+    this.movieService.getMovies().subscribe({
+      next: (response) => {
+        this.movies = response.results;
+        console.log(response)
+
+      },
+      error: (error) => {
+          console.log(error)
+      },
+      complete: () => {
+          console.log('complete')
+      }
+    })      
+  }
+
+  getTVs(){
+    this.movieService.getTVs().subscribe({
       next: (response) => {
         this.movies = response.results;
         console.log(response)
@@ -34,14 +50,11 @@ export class MoviesComponent implements OnInit {
 
   searchMovies(searchString:any):void{
     let search: string = searchString.data ? searchString.data : searchString;
-    console.log("ovo je srearch", search);
-
     if(search){
       this.movieService.searchMovies(search).subscribe({
         next: (response) => {
           this.movies = response.results;
           console.log(response)
-  
         },
         error: (error) => {
             console.log(error)
@@ -51,26 +64,27 @@ export class MoviesComponent implements OnInit {
         }
       })     
     } else {
-      //todo get all
-      this.getMovies("")
+      this.getMovies()
     }
-     
   }
 
-  getTVs(searchString: string){
-    this.movieService.getTVs(searchString).subscribe({
-      next: (response) => {
-        this.movies = response.results;
-        console.log(response)
-
-      },
-      error: (error) => {
-          console.log(error)
-      },
-      complete: () => {
-          console.log('complete')
-      }
-    })      
+  searchTVs(searchString:any):void{
+    let search: string = searchString.data ? searchString.data : searchString;
+    if(search){
+      this.movieService.searchTVs(search).subscribe({
+        next: (response) => {
+          this.movies = response.results;
+          console.log(response)
+        },
+        error: (error) => {
+            console.log(error)
+        },
+        complete: () => {
+            console.log('complete')
+        }
+      })     
+    } else {
+      this.getMovies()
+    }
   }
-
 }

@@ -22,21 +22,16 @@ export class MoviesDetailsComponent implements OnInit {
   }
 
   loadMovie() {
-    console.log("id:", this.id);
     this.movieService.getMovieDetails(this.id).subscribe(movie => {
       this.movie = movie;
-      console.log("ovooo",movie);
     })
   }
 
   loadTV() {
-    console.log("id:", this.id);
     this.movieService.getTVsDetails(this.id).subscribe(movie => {
       this.movie = movie;
-      console.log("ovooo",movie);
     })
   }
-
 
   getImage(){
     if(this.movie.poster_path == 'N/A'){
