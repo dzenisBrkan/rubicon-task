@@ -22,24 +22,36 @@ export class MoviesDetailsComponent implements OnInit {
   }
 
   loadMovie() {
-    this.movieService.getMovieDetails(this.id).subscribe(movie => {
-      this.movie = movie;
-    })
+    this.movieService.getMovieDetails(this.id).subscribe({
+      next: (response) => {
+        this.movie = response;
+        console.log(response)
+      },
+      error: (error) => {
+          console.log(error)
+      },
+      complete: () => {
+          console.log('complete')
+      }
+    })      
   }
 
   loadTV() {
-    this.movieService.getTVsDetails(this.id).subscribe(movie => {
-      this.movie = movie;
-    })
+    this.movieService.getTVsDetails(this.id).subscribe({
+      next: (response) => {
+        this.movie = response;
+        console.log(response)
+      },
+      error: (error) => {
+          console.log(error)
+      },
+      complete: () => {
+          console.log('complete')
+      }
+    })      
   }
 
   getImage(){
-    if(this.movie.poster_path == 'N/A'){
-      return 'http://via.placeholder.com/400'
-    }
-    else{
-      return 'https://image.tmdb.org/t/p/w500' + this.movie.poster_path;
-    }
+    return 'https://image.tmdb.org/t/p/w500' + this.movie.poster_path;
   }
-
 }

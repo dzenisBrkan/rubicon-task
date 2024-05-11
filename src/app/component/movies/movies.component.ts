@@ -21,7 +21,6 @@ export class MoviesComponent implements OnInit {
       next: (response) => {
         this.movies = response.results;
         console.log(response)
-
       },
       error: (error) => {
           console.log(error)
@@ -37,7 +36,6 @@ export class MoviesComponent implements OnInit {
       next: (response) => {
         this.movies = response.results;
         console.log(response)
-
       },
       error: (error) => {
           console.log(error)
