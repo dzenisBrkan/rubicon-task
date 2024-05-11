@@ -1,14 +1,30 @@
+<div class="tab-switch">
+    <ul class="tabs">
+      <li class="tab-slider1"  (click)="getTVs(search.value)">TV Shows</li>
+      <li class="tab-slider2" (click)="getMovies(search.value)">Movies</li>
+    </ul>
+  <!-- <div class="tab-slider-container" [ngSwitch]="viewMode">
+    <div id="tab1" class="tab-slider-body" *ngSwitchCase="'tab1'">
+      <h2>TV Shows</h2>
+    </div>
+    <div id="tab2" class="tab-slider-body" *ngSwitchCase="'tab2'">
+      <h2>Movies</h2>
+    </div>
+  </div> -->
+</div>
+
+
 <div class="container">
   <div class="jumbotron">
       <h1 class="text-center">Search for any movie...</h1>
       <div class="search">
-          <input type="text" #search placeholder="search for movie" />
-          <i class="fa fa-search fa-3x" (click)="getMovies(search.value)"></i>
+        <!-- ngOnChange="searchMovies(search.value)" -->
+          <input type="text" #search placeholder="search for movie" (input)="searchMovies(search.value)" />
+          <i class="fa fa-search fa-3x" (click)="searchMovies(search.value)"></i>
       </div>
   </div>
 </div>
 <div class="container">
   <!-- <app-card-movie [movies]="movies"/> -->
-  <app-card-movie *ngFor="let movie of movies" [movie] = "movie">
-  </app-card-movie>
+  <app-card-movie *ngFor="let movie of movies" [movie] = "movie"></app-card-movie>
 </div>

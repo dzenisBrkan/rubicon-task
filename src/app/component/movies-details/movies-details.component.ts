@@ -1,3 +1,4 @@
+import { resolve } from 'node:path';
 import { ActivatedRoute } from '@angular/router';
 import { MovieService } from './../../_services/movie.service';
 import { Component, OnInit } from '@angular/core';
@@ -8,18 +9,42 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./movies-details.component.css']
 })
 export class MoviesDetailsComponent implements OnInit {
-  // movie: any;
-  movie = { id: 11, title: 'Mr. robot', type: 'Show', year: '2006', poster: 'https://images.squarespace-cdn.com/content/v1/5acd17597c93273e08da4786/1547847934765-ZOU5KGSHYT6UVL6O5E5J/Shrek+Poster.png?format=2500w' }
-  constructor(private movieService: MovieService, private route: ActivatedRoute) { }
+  movie: any;
+  id: number;
+  
+  constructor(private movieService: MovieService, private route: ActivatedRoute) {
+    this.id = parseInt(this.route.snapshot.params['id']);
+   }
 
   ngOnInit() {
     this.loadMovie();
+    this.loadTV();
   }
 
-  loadMovie(){
-    // this.movieService.getMovie(this.route.snapshot.paramMap.get("id")).subscribe(movie => {
-    //   this.movie = movie;
-    // })
+  loadMovie() {
+    console.log("id:", this.id);
+    this.movieService.getMovieDetails(this.id).subscribe(movie => {
+      this.movie = movie;
+      console.log("ovooo",movie);
+    })
+  }
+
+  loadTV() {
+    console.log("id:", this.id);
+    this.movieService.getTVsDetails(this.id).subscribe(movie => {
+      this.movie = movie;
+      console.log("ovooo",movie);
+    })
+  }
+
+
+  getImage(){
+    if(this.movie.poster_path == 'N/A'){
+      return 'http://via.placeholder.com/400'
+    }
+    else{
+      return 'https://image.tmdb.org/t/p/w500' + this.movie.poster_path;
+    }
   }
 
 }
