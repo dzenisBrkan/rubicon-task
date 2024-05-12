@@ -6,14 +6,14 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MoviesComponent } from './component/movies/movies.component';
-import { MoviesDetailsComponent } from './component/movies-details/movies-details.component';
-import { CardMovieComponent } from './component/card-movie/card-movie.component';
+import { CardMovieComponent } from './component/card/card-movie.component';
+import { CardDetailsComponent } from './component/card-details/card-details.component';
 
 @NgModule({
   declarations: [	
     AppComponent,
     MoviesComponent,
-    MoviesDetailsComponent,
+    CardDetailsComponent,
     CardMovieComponent
    ],
   imports: [

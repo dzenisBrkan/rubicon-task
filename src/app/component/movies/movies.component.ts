@@ -32,7 +32,7 @@ export class MoviesComponent implements OnInit {
     this.switchIsMoviesTab(false);  
     this.movieService.getMovies().subscribe({
       next: (response) => {
-        this.movies = response.results;
+        this.movies = response.results.slice(0, 10);
       },
       error: (error) => {
           console.log(error)
@@ -78,7 +78,7 @@ export class MoviesComponent implements OnInit {
     this.switchIsMoviesTab(true);
     this.movieService.getTVs().subscribe({
       next: (response) => {
-        this.movies = response.results;
+        this.movies = response.results.slice(0, 10);
       },
       error: (error) => {
           console.log(error)

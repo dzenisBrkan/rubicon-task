@@ -1,14 +1,14 @@
 import { resolve } from 'node:path';
 import { ActivatedRoute } from '@angular/router';
-import { MovieService } from './../../_services/movie.service';
+import { MovieService } from '../../_services/movie.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-movies-details',
-  templateUrl: './movies-details.component.html',
-  styleUrls: ['./movies-details.component.css']
+  templateUrl: './card-details.component.html',
+  styleUrls: ['./card-details.component.css']
 })
-export class MoviesDetailsComponent implements OnInit {
+export class CardDetailsComponent implements OnInit {
   movie: any;
   id: number;
   isMoviesTab: boolean = false;

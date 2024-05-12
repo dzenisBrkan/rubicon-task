@@ -6,8 +6,8 @@
         <img src="{{getImage()}}" [alt]="movie.title">
     </div>
     <div>
-        <button routerLink="/movies/{{movie.id}}">More</button>
-        <button [routerLink]="'/movies/' + movie.id" [queryParams]="{isMoviesTab: isMoviesTab}">More</button>
+        <!-- <button routerLink="/movies/{{movie.id}}">More</button> -->
+        <button [routerLink]="'/cards/' + movie.id" [queryParams]="{isMoviesTab: isMoviesTab}">More</button>
 
     </div>
 </div>
