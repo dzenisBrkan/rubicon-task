@@ -1,6 +1,6 @@
 # TvShow
-TV/Movie shows Angular app
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.6.
+TV/Movie shows Angular app\
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.6.\
 
 ## to run app
  -go into RUBICON_task dir
