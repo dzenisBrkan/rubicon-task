@@ -11,21 +11,23 @@ import { Component, OnInit } from '@angular/core';
 export class MoviesDetailsComponent implements OnInit {
   movie: any;
   id: number;
+  isMoviesTab: boolean = false;
   
   constructor(private movieService: MovieService, private route: ActivatedRoute) {
     this.id = parseInt(this.route.snapshot.params['id']);
    }
 
   ngOnInit() {
-    this.loadMovie();
-    this.loadTV();
+    this.route.queryParams.subscribe(params => {
+      this.isMoviesTab = params['isMoviesTab'].toLowerCase() === 'false' ? false : true;      
+    });
+    this.isMoviesTab ? this.loadMovie() : this.loadTV();
   }
 
   loadMovie() {
     this.movieService.getMovieDetails(this.id).subscribe({
       next: (response) => {
         this.movie = response;
-        console.log(response)
       },
       error: (error) => {
           console.log(error)
@@ -37,10 +39,9 @@ export class MoviesDetailsComponent implements OnInit {
   }
 
   loadTV() {
-    this.movieService.getTVsDetails(this.id).subscribe({
+    this.movieService.getTVDetails(this.id).subscribe({
       next: (response) => {
         this.movie = response;
-        console.log(response)
       },
       error: (error) => {
           console.log(error)

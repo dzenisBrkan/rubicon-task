@@ -4,6 +4,7 @@
     left: 7%;
 
     .tabs{
+        cursor: pointer;
         display: flex;
         flex-direction: row;
         list-style-type: none; 
@@ -80,4 +81,30 @@
   position: absolute;
   left: 48%;
   transform: translate(-50%, -50%);
+}
+
+.pagination{
+  display: flex;
+  margin: 10px 30px;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.page{
+  padding: 20px;
+  cursor: pointer;
+}
+
+.page.disable{
+  cursor: not-allowed;
+  color: grey;
+}
+
+.current{
+  padding: 10px 20px;
+  border-radius: 50%;
+  border: 5px solid #00B4CC;
+  font-size: 20px;
+  font-weight: 600;
 }

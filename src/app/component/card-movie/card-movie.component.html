@@ -7,5 +7,7 @@
     </div>
     <div>
         <button routerLink="/movies/{{movie.id}}">More</button>
+        <button [routerLink]="'/movies/' + movie.id" [queryParams]="{isMoviesTab: isMoviesTab}">More</button>
+
     </div>
 </div>

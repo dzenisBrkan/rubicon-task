@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CardMovieComponent implements OnInit {
   @Input('movie') movie: any;
-  @Input('tv') tv: any;
+  @Input('isMoviesTab') isMoviesTab: any;
 
   constructor() { }
 

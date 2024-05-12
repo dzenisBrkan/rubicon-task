@@ -17,12 +17,8 @@ private tvDetails_URL: string = this.BASE_URL + 'tv/';
 
   constructor(private http: HttpClient) {}
 
-   getMovies(): Observable<any>{
+  getMovies(): Observable<any>{
     return this.http.get<any>(this.API_MOVIE_URL);
-  }
-
-  getTVsDetails(id: number): Observable<any>{
-    return this.http.get<any>(this.tvDetails_URL + id + '?' + this.API_KEY);
   }
 
   getMovieDetails(id: number){
@@ -37,7 +33,11 @@ private tvDetails_URL: string = this.BASE_URL + 'tv/';
     return this.http.get<any>(this.API_TV_URL);
   }
 
-  getTVDetails(id: string){
+  getTVsPaggination(url: string): Observable<any>{
+    return this.http.get<any>(url);
+  }
+
+  getTVDetails(id: number){
     return this.http.get<any>(this.tvDetails_URL + id + '?' + this.API_KEY);
   }
 
