@@ -95,7 +95,7 @@ export class MoviesComponent implements OnInit {
 
   searchMovies(searchString:any):void{
     let search: string = searchString.data ? searchString.data : searchString;
-    if(search){
+    if(search && search.length > 3){
       this.movieService.searchMovies(search).subscribe({
         next: (response) => {
           this.movies = response.results;
@@ -107,14 +107,14 @@ export class MoviesComponent implements OnInit {
             console.log('complete')
         }
       })     
-    } else {
-      this.getMovies()
+    } else if (search === "") {
+      this.isMoviesTab ? this.getMovies() : this.getTVs()
     }
   }
 
   searchTVs(searchString:any):void{
     let search: string = searchString.data ? searchString.data : searchString;
-    if(search){
+    if(search && search.length > 3){
       this.movieService.searchTVs(search).subscribe({
         next: (response) => {
           this.movies = response.results;
@@ -126,8 +126,8 @@ export class MoviesComponent implements OnInit {
             console.log('complete')
         }
       })     
-    } else {
-      this.getMovies()
+    } else if (search === "") {
+      this.isMoviesTab ? this.getMovies() : this.getTVs()
     }
   }
     

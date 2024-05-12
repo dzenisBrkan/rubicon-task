@@ -8,10 +8,14 @@
 <div class="container">
   <div class="wrap">
       <div class="search">
-          <input type="text" class="searchTerm" #search placeholder="searching for..." (input)="searchMovies(search.value)" />
+         <div *ngIf="isMoviesTab">
+          <input  type="text" class="searchTerm" #search placeholder="searching for..." (input)="searchMovies(search.value)" />
           <button class="searchButton"><i class="fa fa-search fa-1x" (click)="searchMovies(search.value)"></i></button>
-          <!-- <i class="fa fa-search fa-3x" (click)="searchTVs(search.value)"></i> -->
-          <!-- treba napraviti da se traze i shows -->
+        </div>
+        <div *ngIf="!isMoviesTab" style="border: 1px solid red;">
+          <input  type="text" class="searchTerm" #search placeholder="searching for..." (input)="searchTVs(search.value)" />
+          <button class="searchButton"><i class="fa fa-search fa-1x" (click)="searchTVs(search.value)"></i></button>
+        </div>
       </div>
   </div>
 </div>

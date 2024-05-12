@@ -15,7 +15,8 @@
       <div class="plot-content">
         <h3>Plot</h3>
         <p>{{movie.overview}}</p>
-        <button [routerLink]="['/movies']" routerLinkActive >Back</button>
+        <button  (click)="goBack()">Back</button>
+        <!-- [routerLink]="['/movies']" routerLinkActive -->
       </div>
     </div>
   </div>
