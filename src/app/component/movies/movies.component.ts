@@ -1,169 +1,109 @@
 import { resolve } from 'node:path';
 import { Component, OnInit } from '@angular/core';
 import { MovieService } from '../../_services/movie.service';
+import { timer } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-movies',
   templateUrl: './movies.component.html',
-  styleUrls: ['./movies.component.css']
+  styleUrls: ['./movies.component.css'],
 })
 export class MoviesComponent implements OnInit {
-  movies:any = [];
-  tvs:any = [];
-  prev = document.getElementById(`prev`);
-  current = document.getElementById(`current`);
-  next = document.getElementById(`next`);
-
-  currentPage = 1;
-  nextPage = 2;
-  prevPage = 3;
+  movies: any = [];
+  tvs: any = [];
+  search = '';
   lastURL = '';
-  totalPages = 100;
+  isMoviesTab: boolean = false;
 
-  isMoviesTab:boolean = false;
+  constructor(private movieService: MovieService) {}
 
-  constructor(private movieService: MovieService){}
-
-  ngOnInit(){
+  ngOnInit() {
     this.getTVs();
   }
 
-  getMovies(){
-    this.switchIsMoviesTab(false);  
-    this.movieService.getMovies().subscribe({
-      next: (response) => {
-        this.movies = response.results.slice(0, 10);
-      },
-      error: (error) => {
-          console.log(error)
-      },
-      complete: () => {
-          console.log('complete')
-      }
-    })
-  }
-
-  getTVsPaggination(url: string){
-    this.movieService.getTVsPaggination(url).subscribe({
-      next: (response) => {
-        this.movies = response.results;
-        this.currentPage = response.results.page;
-        this.nextPage = this.currentPage + 1;
-        this.prevPage = this.currentPage - 1;
-        this.totalPages = response.results.total_pages;
-
-        // this.current?.innerText = this.currentPage;
-
-        if(this.currentPage <= 1){
-          this.prev?.classList.add('disable');
-          this.next?.classList.remove('disable');
-        }else if(this.currentPage >= this.totalPages){
-          this.prev?.classList.remove('disable');
-          this.next?.classList.add('disable');
-        }else{
-          this.prev?.classList.remove('disable');
-          this.next?.classList.remove('disable');
-        }
-      },
-      error: (error) => {
-          console.log(error)
-      },
-      complete: () => {
-          console.log('complete')
-      }
-    }) 
-  }
-
-  getTVs(){
+  getMovies() {
     this.switchIsMoviesTab(true);
-    this.movieService.getTVs().subscribe({
-      next: (response) => {
-        this.movies = response.results.slice(0, 10);
-      },
-      error: (error) => {
-          console.log(error)
-      },
-      complete: () => {
-          console.log('complete')
-      }
-    })    
-  }
-
-  switchIsMoviesTab(value: boolean){
-    this.isMoviesTab = !value;
-  }
-
-  searchMovies(searchString:any):void{
-    let search: string = searchString.data ? searchString.data : searchString;
-    if(search && search.length > 3){
-      this.movieService.searchMovies(search).subscribe({
+    if (this.search && this.search.length > 3) {
+      this.searchMovies(this.search);
+    } else {
+      this.movieService.getMovies().subscribe({
         next: (response) => {
-          this.movies = response.results;
+          this.movies = response.results.slice(0, 10);
         },
         error: (error) => {
-            console.log(error)
+          console.log(error);
         },
         complete: () => {
-            console.log('complete')
-        }
-      })     
-    } else if (search === "") {
-      this.isMoviesTab ? this.getMovies() : this.getTVs()
+          console.log('complete');
+        },
+      });
     }
   }
 
-  searchTVs(searchString:any):void{
-    let search: string = searchString.data ? searchString.data : searchString;
-    if(search && search.length > 3){
-      this.movieService.searchTVs(search).subscribe({
+  getTVs() {
+    this.switchIsMoviesTab(false);
+    if (this.search && this.search.length > 3) {
+      this.searchTVs(this.search);
+    } else {
+      this.movieService.getTVs().subscribe({
         next: (response) => {
-          this.movies = response.results;
+          this.movies = response.results.slice(0, 10);
         },
         error: (error) => {
-            console.log(error)
+          console.log(error);
         },
         complete: () => {
-            console.log('complete')
-        }
-      })     
-    } else if (search === "") {
-      this.isMoviesTab ? this.getMovies() : this.getTVs()
+          console.log('complete');
+        },
+      });
     }
   }
-    
-  prevPageFunction():void{
-    this.prev?.addEventListener('click', () =>{
-      if(this.prevPage > 0){
-        this.pageCall(this.nextPage);
-      }
-    })
+
+  switchIsMoviesTab(value: boolean) {
+    this.isMoviesTab = value;
   }
 
-  nextPageFunction():void{
-    this.next?.addEventListener('click', () =>{
-      if(this.nextPage <= this.totalPages){
-        this.pageCall(this.nextPage);
-      }
-    })
-  }
+  searchMovies(searchString: any): void {
+    this.search = searchString.data ? searchString.data : searchString;
 
-  pageCall(page: number){
-    var url = ''
-    var urlSplit = url.split('?');
-    var queryParams = urlSplit[1].split('&');
-    var key = queryParams[queryParams.length - 1].split('=');
-    if(key[0] != 'page'){
-      let url = this.lastURL + '&page=' + page;
-      this.getTVsPaggination(url);
-    }else{
-      key[1] = page.toString();
-      let a = key.join('=');
-      queryParams[queryParams.length - 1] = a;
-      var b = queryParams.join('&');
-      var url = urlSplit[0] + '?' + b;
-      this.getTVsPaggination(url); 
+    if (this.search && this.search.length > 3) {
+      timer(1000)
+        .pipe(switchMap(() => this.movieService.searchMovies(this.search)))
+        .subscribe({
+          next: (response) => {
+            this.movies = response.results;
+          },
+          error: (error) => {
+            console.log(error);
+          },
+          complete: () => {
+            console.log('complete');
+          },
+        });
+    } else if (this.search === '') {
+      this.isMoviesTab ? this.getMovies() : this.getTVs();
     }
+  }
 
+  searchTVs(searchString: any): void {
+    this.search = searchString.data ? searchString.data : searchString;
+    if (this.search && this.search.length > 3) {
+      timer(1000)
+        .pipe(switchMap(() => this.movieService.searchTVs(this.search)))
+        .subscribe({
+          next: (response) => {
+            this.movies = response.results;
+          },
+          error: (error) => {
+            console.log(error);
+          },
+          complete: () => {
+            console.log('complete');
+          },
+        });
+    } else if (this.search === '') {
+      this.isMoviesTab ? this.getMovies() : this.getTVs();
+    }
   }
 }
-

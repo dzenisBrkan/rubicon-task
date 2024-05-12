@@ -1,29 +1,50 @@
 <div class="tab-switch">
-    <ul class="tabs">
-      <li class="tab-slider1"  (click)="getTVs()">TV Shows</li>
-      <li class="tab-slider2" (click)="getMovies()">Movies</li>
-    </ul>
+  <ul class="tabs">
+    <!-- <li class="tab-slider1" (click)="search.length > 3  ? searchTVs(search) : getTVs()">TV Shows</li> -->
+    <!-- <li class="tab-slider2" (click)="search.length > 3 ? searchMovies(search) : getMovies()">Movies</li> -->
+    <li class="tab-slider1" (click)="getTVs()">TV Shows</li>
+    <li class="tab-slider2" (click)="getMovies()">Movies</li>
+  </ul>
 </div>
 
 <div class="container">
   <div class="wrap">
-      <div class="search">
-         <div *ngIf="isMoviesTab">
-          <input  type="text" class="searchTerm" #search placeholder="searching for..." (input)="searchMovies(search.value)" />
-          <button class="searchButton"><i class="fa fa-search fa-1x" (click)="searchMovies(search.value)"></i></button>
-        </div>
-        <div *ngIf="!isMoviesTab" style="border: 1px solid red;">
-          <input  type="text" class="searchTerm" #search placeholder="searching for..." (input)="searchTVs(search.value)" />
-          <button class="searchButton"><i class="fa fa-search fa-1x" (click)="searchTVs(search.value)"></i></button>
-        </div>
+    <div class="search">
+      <div *ngIf="isMoviesTab" class="search-container">
+        <input
+          type="text"
+          class="searchTerm"
+          #search
+          placeholder="searching for..."
+          (input)="searchMovies(search.value)"
+        />
+        <button class="searchButton">
+          <i
+            class="fa fa-search fa-1x"
+            (click)="searchMovies(search.value)"
+          ></i>
+        </button>
       </div>
+
+      <div *ngIf="!isMoviesTab" class="search-container">
+        <input
+          type="text"
+          class="searchTerm"
+          #search
+          placeholder="searching for..."
+          (input)="searchTVs(search.value)"
+        />
+        <button class="searchButton">
+          <i class="fa fa-search fa-1x" (click)="searchTVs(search.value)"></i>
+        </button>
+      </div>
+    </div>
   </div>
 </div>
 <div class="container">
-  <app-card-movie *ngFor="let movie of movies" [movie] = "movie" [isMoviesTab]="isMoviesTab"></app-card-movie>
-</div>
-<div class="pagination">
-  <div class="page" id="prev" (click)="prevPageFunction()">Previous</div>
-  <div class="current" id="current">1</div>
-  <div class="page" id="next" (click)="nextPageFunction()">Next</div>
+  <app-card-movie
+    *ngFor="let movie of movies"
+    [movie]="movie"
+    [isMoviesTab]="isMoviesTab"
+  ></app-card-movie>
 </div>

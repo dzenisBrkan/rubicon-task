@@ -75,6 +75,10 @@
   font-size: 20px;
   left: 102%;
 }
+.search-container{
+  width: 100%;
+  height: 45px;
+}
   
 .wrap{
   width: 80%;
